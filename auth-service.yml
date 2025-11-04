@@ -6,7 +6,7 @@ spring:
     name: auth-service
   data:
     mongodb:
-      uri: mongodb://localhost:27017/authdb
+      uri: mongodb://root:root@localhost:27017/authdb?authSource=admin
 
 jwt:
   secret: my-secret-key

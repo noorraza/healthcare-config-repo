@@ -1,6 +1,20 @@
 server:
-  port: 8082
+  port: 8083
+
 spring:
+  application:
+    name: doctor-service
   data:
     mongodb:
-      uri: mongodb://localhost:27017/doctordb
+      uri: mongodb://mongo:27017/doctordb
+  cloud:
+    stream:
+      bindings:
+        appointmentCreated-in-0:
+          destination: appointments.created
+        appointmentApproved-in-0:
+          destination: appointments.approved
+        appointmentRejected-in-0:
+          destination: appointments.rejected
+        appointmentCommented-in-0:
+          destination: appointments.commented

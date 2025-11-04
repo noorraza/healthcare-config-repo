@@ -1,19 +1,39 @@
+server:
+  port: 8080
+
 spring:
   application:
-    name: config-defaults
-  data:
-    mongodb:
-      uri: mongodb://mongo:27017/
-  kafka:
-    bootstrap-servers: kafka:9092
-  zipkin:
-    base-url: http://zipkin:9411
+    name: api-gateway
   cloud:
-    config:
-      label: main
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info,metrics
+    gateway:
+      routes:
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/auth/**
+        - id: patient-service
+          uri: lb://patient-service
+          predicates:
+            - Path=/patients/**
+        - id: doctor-service
+          uri: lb://doctor-service
+          predicates:
+            - Path=/doctors/**
+        - id: appointment-service
+          uri: lb://appointment-service
+          predicates:
+            - Path=/appointments/**
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/notifications/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS

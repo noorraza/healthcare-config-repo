@@ -1,0 +1,20 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: appointment-service
+  data:
+    mongodb:
+      uri: mongodb://mongo:27017/appointmentdb
+  cloud:
+    stream:
+      bindings:
+        appointmentCreated-out-0:
+          destination: appointments.created
+        appointmentApproved-out-0:
+          destination: appointments.approved
+        appointmentRejected-out-0:
+          destination: appointments.rejected
+        appointmentCommented-out-0:
+          destination: appointments.commented

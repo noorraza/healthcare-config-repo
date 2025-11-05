@@ -9,7 +9,7 @@ spring:
       uri: mongodb://root:root@localhost:27017/authdb?authSource=admin
 
 jwt:
-  secret: my-secret-key
+  secret: "d8e3f0a7b9c2d5e6f8a1b3c4d6e7f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6"
   expiration: 3600000 # 1 hour
 
 cloud:
